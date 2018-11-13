@@ -1,0 +1,28 @@
+  ---
+  
+  tasks:
+    - name: "Lets create some hello word file"
+      file:
+        path: ~/HelloWorld
+        state: touch
+    - name: "Install apache server"
+      yum:
+        name: httpd
+        state: latest
+    - name: "install mysqls"
+      yum:
+        name: "{{packages}}"
+        state: present
+      vars:
+        packages:
+         - mariadb
+         - mariadb-server
+    - name: "install php"
+      yum:
+        name: "{{packages}}"
+        state: latest
+      vars:
+        packages:
+         - php
+         - php-mysql
+         - MySQL-python
